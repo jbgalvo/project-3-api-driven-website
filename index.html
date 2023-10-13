@@ -1,0 +1,164 @@
+<!--***********************************************
+      ____                  __ __  ____  __ __
+     / __ )____ _________  / // / / __ \/ // /
+    / __  / __ `/ ___/ _ \/ // /_/ / / / // /_
+   / /_/ / /_/ (__  )  __/__  __/ /_/ /__  __/
+  /_____/\__,_/____/\___/  /_/  \____/  /_/   
+                                              
+Developer: Galvo, Jb @ https://github.com/jbgalvo
+
+Description: Project 2 - API Driven Website
+Disclaimer: 
+This website is only for educational purposes.
+*************************************************-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--****************************************
+  $$\      $$\            $$\               
+  $$$\    $$$ |           $$ |              
+  $$$$\  $$$$ | $$$$$$\ $$$$$$\    $$$$$$\  
+  $$\$$\$$ $$ |$$  __$$\\_$$  _|   \____$$\ 
+  $$ \$$$  $$ |$$$$$$$$ | $$ |     $$$$$$$ |
+  $$ |\$  /$$ |$$   ____| $$ |$$\ $$  __$$ |
+  $$ | \_/ $$ |\$$$$$$$\  \$$$$  |\$$$$$$$ |
+  \__|     \__| \_______|  \____/  \_______|
+                                            
+  Description: Metatags Section
+  ******************************************-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" 
+        content="The Movie Database (TMDB) is a popular, user editable database for movies and TV shows." />
+  <meta name="keywords" content="Movies, TV Shows, Streaming, Reviews, API, Actors, Actresses, Photos, User Ratings, Synopsis, Trailers, Teasers, Credits, Cast" />
+  <meta name="author" content="developer" />
+
+  <!--  Open Graph / Facebook  -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="" />
+  <meta property="og:title" content="The Movie Database (TMDB)" />
+  <meta property="og:image" content="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg" />
+  <meta property="og:image:alt" content="TMDB Logo" />
+  <meta property="og:description" 
+        content="The Movie Database (TMDB) is a popular, user editable database for movies and TV shows.">
+  <meta property="og:site_name" content="The Movie Database (TMDB)" />
+
+  <!-- Twitter Metatags -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="" />
+  <meta property="twitter:title" content="The Movie Database (TMDB)" />
+  <meta property="twitter:description"
+        content="The Movie Database (TMDB) is a popular, user editable database for movies and TV shows." />
+  <meta property="twitter:image" content="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg" />
+  <meta name="twitter:image:alt" content="TMDB Logo">
+
+  <!-- Favicon Icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="https://www.themoviedb.org/assets/2/apple-touch-icon-57ed4b3b0450fd5e9a0c20f34e814b82adaa1085c79bdde2f00ca8787b63d2c4.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://www.themoviedb.org/assets/2/favicon-32x32-543a21832c8931d3494a68881f6afcafc58e96c5d324345377f3197a37b367b5.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://www.themoviedb.org/assets/2/favicon-16x16-b362d267873ce9c5a39f686a11fe67fec2a72ed25fa8396c11b71aa43c938b11.png">
+  <link rel="manifest" href="https://www.themoviedb.org/manifest.json?version=3">
+
+  <title>Project 3 - The Movie Database (TMDB)</title>
+
+  <!--************************************
+   $$$$$$\   $$$$$$\   $$$$$$\  
+  $$  __$$\ $$  __$$\ $$  __$$\ 
+  $$ /  \__|$$ /  \__|$$ /  \__|
+  $$ |      \$$$$$$\  \$$$$$$\  
+  $$ |       \____$$\  \____$$\ 
+  $$ |  $$\ $$\   $$ |$$\   $$ |
+  \$$$$$$  |\$$$$$$  |\$$$$$$  |
+   \______/  \______/  \______/ 
+                                
+  Description: CSS Section
+  **************************************-->
+  <!-- Font Awesome CSS -->
+  <link rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" 
+        crossorigin="anonymous" 
+        referrerpolicy="no-referrer" />
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
+        crossorigin="anonymous">
+  <!-- Styles CSS -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  
+  <!--**********************************************************
+  $$\   $$\                           $$\                     
+  $$ |  $$ |                          $$ |                    
+  $$ |  $$ | $$$$$$\   $$$$$$\   $$$$$$$ | $$$$$$\   $$$$$$\  
+  $$$$$$$$ |$$  __$$\  \____$$\ $$  __$$ |$$  __$$\ $$  __$$\ 
+  $$  __$$ |$$$$$$$$ | $$$$$$$ |$$ /  $$ |$$$$$$$$ |$$ |  \__|
+  $$ |  $$ |$$   ____|$$  __$$ |$$ |  $$ |$$   ____|$$ |      
+  $$ |  $$ |\$$$$$$$\ \$$$$$$$ |\$$$$$$$ |\$$$$$$$\ $$ |      
+  \__|  \__| \_______| \_______| \_______| \_______|\__|      
+                                                              
+  Description: Header Section
+  ************************************************************-->
+  <header id="header">
+    <!-- Begin: Nav Section -->
+    <nav class="navbar navbar-light navbar-expand-lg bg-tmdb fixed-top shadow">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg" 
+               alt="TMDB Logo" 
+               class="navbar-logo"
+               width="154"
+               height="20">
+        </a>
+        <button class="navbar-toggler" 
+                type="button" 
+                data-bs-toggle="collapse" 
+                data-bs-target="#navbarSupportedContent" 
+                aria-controls="navbarSupportedContent" 
+                aria-expanded="false" 
+                aria-label="Toggle navigation">
+          <i class="fa-solid fa-sliders fa-lg navbar-toggler-icon"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html">
+                Movies
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="tv-shows.html">TV Shows</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="people.html">People</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- End: Nav Section -->
+  </header>  
+
+  <!--************************************************************
+   $$$$$$\                      $$\            $$\               
+  $$  __$$\                     \__|           $$ |              
+  $$ /  \__| $$$$$$$\  $$$$$$\  $$\  $$$$$$\ $$$$$$\    $$$$$$$\ 
+  \$$$$$$\  $$  _____|$$  __$$\ $$ |$$  __$$\\_$$  _|  $$  _____|
+   \____$$\ $$ /      $$ |  \__|$$ |$$ /  $$ | $$ |    \$$$$$$\  
+  $$\   $$ |$$ |      $$ |      $$ |$$ |  $$ | $$ |$$\  \____$$\ 
+  \$$$$$$  |\$$$$$$$\ $$ |      $$ |$$$$$$$  | \$$$$  |$$$$$$$  |
+   \______/  \_______|\__|      \__|$$  ____/   \____/ \_______/ 
+                                    $$ |                         
+                                    $$ |                         
+                                    \__|                         
+                                
+  Description: Scripts Section
+  **************************************************************-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+          integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
+          crossorigin="anonymous"></script>
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>
