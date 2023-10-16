@@ -7,7 +7,9 @@ let moviePage = 1;
 //Button Variables
 const searchBtnMovie = document.getElementById("search-btn-movie");
 const resetBtnMovie = document.getElementById("reset-btn-movie");
+const resetBtnMovieIcon = document.getElementById("reset-btn-movie-icon");
 const loadMoreBtnMovie = document.getElementById("load-more-btn-movie");
+const loadMoreBtnMovieIcon = document.getElementById("load-more-btn-movie-icon");
 
 //Function for returning movies data
 const fetchGamesMovies = (page) => {
@@ -30,17 +32,25 @@ searchBtnMovie.addEventListener("click", () => {
 
   //Input Value
   const searchInputMovie = document.getElementById("search-input-movie").value;
-  
-  fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchInputMovie}`)
-    .then((response) => response.json())
-    .then((response) => {
 
-      if (response.results.length === 0){
+  if (searchInputMovie === '') {
 
-        //Hide Load More button 
-        loadMoreBtnMovie.classList.add('d-none');
+    Swal.fire({
+      icon: "error",
+      title: "Search Input is required",
+      text: "Please enter a value for the input field.",
+    });
 
-        movieCard.innerHTML = `
+  } else {
+    
+    fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchInputMovie}`)
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.results.length === 0) {
+          //Hide Load More button
+          loadMoreBtnMovie.classList.add("d-none");
+
+          movieCard.innerHTML = `
           <div class="d-flex flex-column align-items-center">
              <div class="mb-2">
                 <div class="py-10 text-center">
@@ -52,59 +62,112 @@ searchBtnMovie.addEventListener("click", () => {
              </div>
           </div>
         `;
-      } else {
+        } else {
+          //Empty First the movie contents
+          movieCard.innerHTML = "";
 
-        //Empty First the movie contents
-        movieCard.innerHTML = "";
-
-        response.results.forEach((movie) => {
-          movieCard.appendChild(createMovieCard(movie));
-        });
-      }
-        
-    })
-    .catch((err) => console.error(err));
+          response.results.forEach((movie) => {
+            movieCard.appendChild(createMovieCard(movie));
+          });
+        }
+      })
+      .catch((err) => console.error(err));
+  }
+    
   
 });
 
 
 //Load More Btn Filter
 loadMoreBtnMovie.addEventListener("click", () => {
-
   //Increment Page value
   moviePage++;
+
+  //Disable Buttons
+  loadMoreBtnMovie.disabled = true;
+  loadMoreBtnMovieIcon.classList.add("fa-spinner", "fa-spin");
+  loadMoreBtnMovieIcon.classList.remove("fa-circle-plus");
 
   //Set Timeout for displaying the movie page
   setTimeout(() => {
 
+    //Enable button
+    loadMoreBtnMovie.disabled = false;
+    loadMoreBtnMovieIcon.classList.remove("fa-spinner", "fa-spin");
+    loadMoreBtnMovieIcon.classList.add("fa-circle-plus");
+    
+  }, "600");
+
+  setTimeout(() => {
+
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Successfully Loaded Movie Data!",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+
     fetchGamesMovies(moviePage);
 
-  }, "400");
-
+  }, "800");
+  
 });
 
 
 //Reset Filter
 resetBtnMovie.addEventListener("click", () => {
 
-  //Remove diplsay none
-  loadMoreBtnMovie.classList.remove("d-none");
+  //Disable Buttons
+  resetBtnMovie.disabled = true;
+  resetBtnMovieIcon.classList.add("fa-spinner", "fa-spin");
+  resetBtnMovieIcon.classList.remove("fa-arrows-rotate");
 
-  //Search input valeu to empty
-  document.getElementById("search-input-movie").value = '';
 
-  //Empty First the movie contents
-  movieCard.innerHTML = "";
-  
-  //Reset Movie Page to 1
-  moviePage = 1;
+  //Set Timeout for reseting the movie page
+  setTimeout(() => {
 
-  //Revert back load more page to 1
-  fetchGamesMovies(moviePage);
+    //Remove diplsay none
+    loadMoreBtnMovie.classList.add("d-none");
 
+    //Enable button
+    resetBtnMovie.disabled = false;
+    resetBtnMovieIcon.classList.remove("fa-spinner", "fa-spin");
+    resetBtnMovieIcon.classList.add("fa-arrows-rotate");
+
+    //Empty First the movie contents
+    movieCard.innerHTML = "";
+
+  }, "800");
+
+  //Set Timeout for reseting the movie page
+  setTimeout(() => {
+
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Successfully Game Reset!",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+
+    //Remove diplsay none
+    loadMoreBtnMovie.classList.remove("d-none");
+
+    //Search input valeu to empty
+    document.getElementById("search-input-movie").value = "";
+
+    //Empty First the movie contents
+    movieCard.innerHTML = "";
+
+    //Reset Movie Page to 1
+    moviePage = 1;
+
+    //Revert back load more page to 1
+    fetchGamesMovies(moviePage);
+
+  }, "1000");
 });
-
-
 
 // Create Movie Card
 const createMovieCard = (movie) => {
