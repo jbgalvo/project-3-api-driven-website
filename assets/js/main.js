@@ -1,25 +1,85 @@
 //Get API Options
 const apiKey = 'fdd3c16ff0bbdc6a5f71e7aa4ad500da';
 const options = {method: 'GET', headers: {accept: 'application/json'}};
+const movieCard = document.getElementById("popular-movies-content");
+
+//Button Variables
+const searchBtnMovie = document.getElementById("search-btn-movie");
+const resetBtnMovie = document.getElementById("reset-btn-movie");
+
+//Function for returning movies data
+const fetchGamesMovies = () => {
+  
+  return fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`)
+        .then((response) => response.json())
+        .then((response) => {
+          response.results.forEach((movie) => {
+            movieCard.appendChild(createMovieCard(movie));
+          });
+        })
+        .catch((err) => console.error(err));
+  
+}
+
+//Call fetch Game Movies
+fetchGamesMovies();
+
+//Get Search Data Filter for Movies
+searchBtnMovie.addEventListener("click", () => {
+
+  //Input Value
+  const searchInputMovie = document.getElementById("search-input-movie").value;
+  
+  fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchInputMovie}`)
+    .then((response) => response.json())
+    .then((response) => {
+
+      if (response.results.length === 0){
+        movieCard.innerHTML = `
+          <div class="d-flex flex-column align-items-center">
+             <div class="mb-2">
+                <div class="py-10 text-center">
+                   <img class="img-fluid" src="assets/images/illustration-realestate.svg" alt="Photo">
+                </div>
+                <h2 class="text-center lh-lg">           
+                    <span class="fw-bolder"> No records found.</span>
+                </h2>
+             </div>
+          </div>
+        `;
+      } else {
+
+        //Empty First the movie contents
+        movieCard.innerHTML = "";
+
+        response.results.forEach((movie) => {
+          movieCard.appendChild(createMovieCard(movie));
+        });
+      }
+        
+    })
+    .catch((err) => console.error(err));
+  
+});
 
 
-fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`)
-  .then((response) => response.json())
-  .then((response) => {
-    const movieCard = document.getElementById("popular-movies-content");
-    response.results.forEach((movie) => {
-      console.log(movie);
-      movieCard.appendChild(createMovieCard(movie));
-    });
-  })
-  .catch((err) => console.error(err));
+//Reset Filter
+resetBtnMovie.addEventListener("click", () => {
+
+  //Empty First the movie contents
+  movieCard.innerHTML = "";
+
+  fetchGamesMovies();
+
+});
+
 
 
 // Create Movie Card
 const createMovieCard = (movie) => {
 
   //Define Variables
-  const movieCard = document.createElement("div");
+  const movieCardContent = document.createElement("div");
   let dateOptions = {
     weekday: "long",
     year: "numeric",
@@ -28,18 +88,20 @@ const createMovieCard = (movie) => {
   };
   let getDate = new Date(movie.release_date);
   
-  movieCard.classList.add("col-lg-3", "col-md-6");
-  movieCard.innerHTML = `
+  //Initialize Card Class
+  movieCardContent.classList.add("col-lg-3", "col-md-6");
+  movieCardContent.innerHTML = `
     <div class="card h-100">
       <img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" 
             class="card-img-top" 
-            alt="Card Image"/>
+            alt="Card Image"
+            onerror="this.src='https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg'" />
       <div class="card-body">
         <h5 class="card-title mb-4">
           ${movie.original_title}
         </h5>
         <p class="card-text mb-4">
-          ${getDate.toLocaleDateString("en-US", dateOptions)}
+          ${getDate.toLocaleDateString("en-US", dateOptions)} 
         </p>
       </div>
       <div class="card-footer text-center">
@@ -50,5 +112,8 @@ const createMovieCard = (movie) => {
     </div>
   `;
 
-  return movieCard;
+  //Return Movie card content
+  return movieCardContent;
 }
+
+

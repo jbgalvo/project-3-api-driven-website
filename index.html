@@ -177,7 +177,9 @@ This website is only for educational purposes.
             <h3 class="text-white">Millions of movies, TV shows and people to discover. Explore now.</h3>
             <div class="d-flex search-container">
               <div class="input-group">
-                <input type="search" 
+                <input type="input"
+                       id="search-input-movie" 
+                       name="search-input-movie"
                        class="form-control rounded-pill" 
                        placeholder="Search for a movie, tv show, person......" 
                        aria-label="Search" 
@@ -209,6 +211,13 @@ This website is only for educational purposes.
       <div class="container">
         <div class="title">
           <h2>Popular Movies</h2>
+        </div>
+        <div class="row gy-5 mb-5">
+          <div class="col-md-12 col-lg-12">
+            <div class="d-flex justify-content-center">
+              <button type="button" class="btn btn-primary" id="reset-btn-movie">Reset Filter</button>
+            </div>
+          </div>
         </div>
         <div class="row gx-5 gy-5 mb-5" id="popular-movies-content">
            <!-- Card Contents -->

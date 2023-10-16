@@ -197,6 +197,7 @@ Description: Welcome CSS
   padding: 10px 20px;
   top: 0;
   right: -1px;
+  z-index: 10;
 }
 
 /*******************************************************
