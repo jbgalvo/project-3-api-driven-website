@@ -44,20 +44,8 @@ searchBtnMovie.addEventListener("click", () => {
 
   } else {
 
-    //Disable Buttons
-    searchBtnMovie.disabled = true;
-    searchBtnMovieIcon.classList.add("fa-spinner", "fa-spin");
-    searchBtnMovieIcon.classList.remove("fa-magnifying-glass");
-
-    //Set Timeout 
-    setTimeout(() => {
-
-      //Enable button
-      searchBtnMovie.disabled = false;
-      searchBtnMovieIcon.classList.remove("fa-spinner", "fa-spin");
-      searchBtnMovieIcon.classList.add("fa-magnifying-glass");
-
-    }, "600");
+    //Button Load animation
+    buttonLoader(searchBtnMovie, searchBtnMovieIcon, "fa-magnifying-glass");
 
     setTimeout(() => {
 
@@ -67,23 +55,25 @@ searchBtnMovie.addEventListener("click", () => {
       )
         .then((response) => response.json())
         .then((response) => {
+
+          //Hide Load More button
+          loadMoreBtnMovie.classList.add("d-none");
           if (response.results.length === 0) {
-            //Hide Load More button
-            loadMoreBtnMovie.classList.add("d-none");
 
             movieCard.innerHTML = `
-          <div class="d-flex flex-column align-items-center">
-             <div class="mb-2">
-                <div class="py-10 text-center">
-                   <img class="img-fluid" src="assets/images/illustration-realestate.svg" alt="Photo">
+              <div class="d-flex flex-column align-items-center">
+                <div class="mb-2">
+                    <div class="py-10 text-center">
+                      <img class="img-fluid" src="assets/images/illustration-realestate.svg" alt="Photo">
+                    </div>
+                    <h2 class="text-center lh-lg">           
+                        <span class="fw-bolder"> No records found.</span>
+                    </h2>
                 </div>
-                <h2 class="text-center lh-lg">           
-                    <span class="fw-bolder"> No records found.</span>
-                </h2>
-             </div>
-          </div>
-        `;
+              </div>
+            `;
           } else {
+            
             //Empty First the movie contents
             movieCard.innerHTML = "";
 
@@ -93,11 +83,8 @@ searchBtnMovie.addEventListener("click", () => {
           }
         })
         .catch((err) => console.error(err));
-      
     }, "800");
-    
   } // end if else
-    
   
 });
 
@@ -108,21 +95,10 @@ loadMoreBtnMovie.addEventListener("click", () => {
   //Increment Page value
   moviePage++;
 
-  //Disable Buttons
-  loadMoreBtnMovie.disabled = true;
-  loadMoreBtnMovieIcon.classList.add("fa-spinner", "fa-spin");
-  loadMoreBtnMovieIcon.classList.remove("fa-circle-plus");
+  //Button Load animation
+  buttonLoader(loadMoreBtnMovie, loadMoreBtnMovieIcon, "fa-circle-plus");
 
-  //Set Timeout for displaying the movie page
-  setTimeout(() => {
-
-    //Enable button
-    loadMoreBtnMovie.disabled = false;
-    loadMoreBtnMovieIcon.classList.remove("fa-spinner", "fa-spin");
-    loadMoreBtnMovieIcon.classList.add("fa-circle-plus");
-    
-  }, "600");
-
+  //Set Timeout for reseting the movie page
   setTimeout(() => {
 
     Swal.fire({
@@ -134,31 +110,23 @@ loadMoreBtnMovie.addEventListener("click", () => {
     });
 
     fetchGamesMovies(moviePage);
-
+    
   }, "800");
-  
+
 });
 
 
 //Reset Filter
 resetBtnMovie.addEventListener("click", () => {
 
-  //Disable Buttons
-  resetBtnMovie.disabled = true;
-  resetBtnMovieIcon.classList.add("fa-spinner", "fa-spin");
-  resetBtnMovieIcon.classList.remove("fa-arrows-rotate");
-
+  //Button Load animation
+  buttonLoader(resetBtnMovie, resetBtnMovieIcon, "fa-arrows-rotate");
 
   //Set Timeout for reseting the movie page
   setTimeout(() => {
 
     //Remove diplsay none
     loadMoreBtnMovie.classList.add("d-none");
-
-    //Enable button
-    resetBtnMovie.disabled = false;
-    resetBtnMovieIcon.classList.remove("fa-spinner", "fa-spin");
-    resetBtnMovieIcon.classList.add("fa-arrows-rotate");
 
     //Empty First the movie contents
     movieCard.innerHTML = "";
@@ -192,7 +160,28 @@ resetBtnMovie.addEventListener("click", () => {
     fetchGamesMovies(moviePage);
 
   }, "1000");
+
 });
+
+//Button loader Function
+const buttonLoader = (buttonId, buttonIcon, buttonIconClass) => {
+
+  //Disable Buttons
+  buttonId.disabled = true;
+  buttonIcon.classList.add("fa-spinner", "fa-spin");
+  buttonIcon.classList.remove(buttonIconClass);
+
+  //Set Timeout for reseting the movie page
+  setTimeout(() => {
+    
+    //Enable button
+    buttonId.disabled = false;
+    buttonIcon.classList.remove("fa-spinner", "fa-spin");
+    buttonIcon.classList.add(buttonIconClass);
+
+  }, "600");
+
+};
 
 // Create Movie Card
 const createMovieCard = (movie) => {
