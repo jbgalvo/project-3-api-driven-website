@@ -32,11 +32,53 @@ body {
   scroll-behavior: smooth;
 }
 
+/* Buttons Custom CSS */
 .btn-light-blue {
   background: linear-gradient(to right,rgba(30,213,169,1) 0%,rgba(1,180,228,1) 100%);
   color: var(--text-white);
 }
 
+.btn-primary {
+  background-color: var(--text-primary);
+  color: var(--text-white);
+  border-color: var(--text-primary);
+}
+
+/* Card Custom CSS */
+.card{
+  box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+  transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+}
+
+.card:hover{
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
+@-webkit-keyframes pulse {
+    0% {
+        -moz-transform: scale(0.9);
+        -ms-transform: scale(0.9);
+        -webkit-transform: scale(0.9);
+        transform: scale(0.9);
+    }
+
+    70% {
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        box-shadow: 0 0 0 50px rgba(90, 153, 212, 0);
+    }
+
+    100% {
+        -moz-transform: scale(0.9);
+        -ms-transform: scale(0.9);
+        -webkit-transform: scale(0.9);
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(90, 153, 212, 0);
+    }
+}
 
 /*****************************************************************
 $$\   $$\                           $$\                     
@@ -62,6 +104,48 @@ Description: Header CSS
 
 #header .nav-item .active {
   font-weight: bold;
+}
+
+/*****************************************************************
+ $$$$$$\                        $$\     $$\                     
+$$  __$$\                       $$ |    \__|                    
+$$ /  \__| $$$$$$\   $$$$$$$\ $$$$$$\   $$\  $$$$$$\  $$$$$$$\  
+\$$$$$$\  $$  __$$\ $$  _____|\_$$  _|  $$ |$$  __$$\ $$  __$$\ 
+ \____$$\ $$$$$$$$ |$$ /        $$ |    $$ |$$ /  $$ |$$ |  $$ |
+$$\   $$ |$$   ____|$$ |        $$ |$$\ $$ |$$ |  $$ |$$ |  $$ |
+\$$$$$$  |\$$$$$$$\ \$$$$$$$\   \$$$$  |$$ |\$$$$$$  |$$ |  $$ |
+ \______/  \_______| \_______|   \____/ \__| \______/ \__|  \__|
+                                                                                            
+Description: Section CSS
+*****************************************************************/
+.section-wrapper {
+  padding: 80px 0 50px;
+}
+
+section .title {
+  margin-bottom: 120px;
+}
+
+section .title h2 {
+  font-family: var(--primary-font);
+  font-weight: 500;
+  font-size: 40px;
+  text-align: center;
+  line-height: 1.25px;
+  margin-bottom: 40px;
+  color: var(--text-primary);
+  position: relative;
+}
+
+section .title h2:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 6rem;
+  height: 5px;
+  background: var(--text-secondary);
+  top: 40px;
+  left: calc(50% - 3rem);
 }
 
 /***********************************************************************
