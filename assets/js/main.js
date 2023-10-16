@@ -6,6 +6,7 @@ let moviePage = 1;
 
 //Button Variables
 const searchBtnMovie = document.getElementById("search-btn-movie");
+const searchBtnMovieIcon = document.getElementById("search-btn-movie-icon");
 const resetBtnMovie = document.getElementById("reset-btn-movie");
 const resetBtnMovieIcon = document.getElementById("reset-btn-movie-icon");
 const loadMoreBtnMovie = document.getElementById("load-more-btn-movie");
@@ -42,15 +43,35 @@ searchBtnMovie.addEventListener("click", () => {
     });
 
   } else {
-    
-    fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchInputMovie}`)
-      .then((response) => response.json())
-      .then((response) => {
-        if (response.results.length === 0) {
-          //Hide Load More button
-          loadMoreBtnMovie.classList.add("d-none");
 
-          movieCard.innerHTML = `
+    //Disable Buttons
+    searchBtnMovie.disabled = true;
+    searchBtnMovieIcon.classList.add("fa-spinner", "fa-spin");
+    searchBtnMovieIcon.classList.remove("fa-magnifying-glass");
+
+    //Set Timeout 
+    setTimeout(() => {
+
+      //Enable button
+      searchBtnMovie.disabled = false;
+      searchBtnMovieIcon.classList.remove("fa-spinner", "fa-spin");
+      searchBtnMovieIcon.classList.add("fa-magnifying-glass");
+
+    }, "600");
+
+    setTimeout(() => {
+
+      //Fetch query results
+      fetch(
+        `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchInputMovie}`
+      )
+        .then((response) => response.json())
+        .then((response) => {
+          if (response.results.length === 0) {
+            //Hide Load More button
+            loadMoreBtnMovie.classList.add("d-none");
+
+            movieCard.innerHTML = `
           <div class="d-flex flex-column align-items-center">
              <div class="mb-2">
                 <div class="py-10 text-center">
@@ -62,17 +83,20 @@ searchBtnMovie.addEventListener("click", () => {
              </div>
           </div>
         `;
-        } else {
-          //Empty First the movie contents
-          movieCard.innerHTML = "";
+          } else {
+            //Empty First the movie contents
+            movieCard.innerHTML = "";
 
-          response.results.forEach((movie) => {
-            movieCard.appendChild(createMovieCard(movie));
-          });
-        }
-      })
-      .catch((err) => console.error(err));
-  }
+            response.results.forEach((movie) => {
+              movieCard.appendChild(createMovieCard(movie));
+            });
+          }
+        })
+        .catch((err) => console.error(err));
+      
+    }, "800");
+    
+  } // end if else
     
   
 });
@@ -80,6 +104,7 @@ searchBtnMovie.addEventListener("click", () => {
 
 //Load More Btn Filter
 loadMoreBtnMovie.addEventListener("click", () => {
+
   //Increment Page value
   moviePage++;
 
