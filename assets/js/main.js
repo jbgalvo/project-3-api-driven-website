@@ -73,7 +73,7 @@ searchBtnMovie.addEventListener("click", () => {
               </div>
             `;
           } else {
-            
+
             //Empty First the movie contents
             movieCard.innerHTML = "";
 
@@ -223,5 +223,3 @@ const createMovieCard = (movie) => {
   //Return Movie card content
   return movieCardContent;
 }
-
-
