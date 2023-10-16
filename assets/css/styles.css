@@ -28,9 +28,15 @@ body {
   line-height: 1.75rem;
   background-color: var(--bg-white);
   color: var(--text-black);
-  padding-top: 70px;
+  padding-top: 60px;
   scroll-behavior: smooth;
 }
+
+.btn-light-blue {
+  background: linear-gradient(to right,rgba(30,213,169,1) 0%,rgba(1,180,228,1) 100%);
+  color: var(--text-white);
+}
+
 
 /*****************************************************************
 $$\   $$\                           $$\                     
@@ -56,6 +62,57 @@ Description: Header CSS
 
 #header .nav-item .active {
   font-weight: bold;
+}
+
+/***********************************************************************
+$$\      $$\           $$\                                             
+$$ | $\  $$ |          $$ |                                            
+$$ |$$$\ $$ | $$$$$$\  $$ | $$$$$$$\  $$$$$$\  $$$$$$\$$$$\   $$$$$$\  
+$$ $$ $$\$$ |$$  __$$\ $$ |$$  _____|$$  __$$\ $$  _$$  _$$\ $$  __$$\ 
+$$$$  _$$$$ |$$$$$$$$ |$$ |$$ /      $$ /  $$ |$$ / $$ / $$ |$$$$$$$$ |
+$$$  / \$$$ |$$   ____|$$ |$$ |      $$ |  $$ |$$ | $$ | $$ |$$   ____|
+$$  /   \$$ |\$$$$$$$\ $$ |\$$$$$$$\ \$$$$$$  |$$ | $$ | $$ |\$$$$$$$\ 
+\__/     \__| \_______|\__| \_______| \______/ \__| \__| \__| \_______|
+                                                                       
+                                                                       
+Description: Welcome CSS
+***********************************************************************/
+
+#welcome-section {
+  background: url("https://www.themoviedb.org/t/p/w1920_and_h600_multi_faces_filter(duotone,00192f,00baff)/9xfDWXAUbFXQK585JvByT5pEAhe.jpg") no-repeat center center;
+  background-size: cover;
+}
+
+#welcome-section .welcome-contet-wrapper{
+  padding: 30px 40px;
+}
+
+#welcome-section .welcome-contet-wrapper h1{
+  font-size: 3em;
+  font-weight: 700;
+  line-height: 1;
+}
+
+#welcome-section .welcome-contet-wrapper h3{
+  font-size: 2em;
+  font-weight: 600;
+  margin: 0;
+}
+
+#welcome-section .search-container{
+  margin: 60px 0 20px;
+  position: relative;
+}
+
+#welcome-section .search-container input {
+  padding: 10px 20px;
+}
+
+#welcome-section .search-container button {
+  position: absolute;
+  padding: 10px 20px;
+  top: 0;
+  right: -1px;
 }
 
 /*******************************************************
@@ -88,4 +145,58 @@ Description: Footer Section
 #footer .footer-link:hover {
   color: var(--text-white) !important;
   text-decoration: underline;
+}
+
+/***********************************************
+$$\      $$\                 $$\ $$\           
+$$$\    $$$ |                $$ |\__|          
+$$$$\  $$$$ | $$$$$$\   $$$$$$$ |$$\  $$$$$$\  
+$$\$$\$$ $$ |$$  __$$\ $$  __$$ |$$ | \____$$\ 
+$$ \$$$  $$ |$$$$$$$$ |$$ /  $$ |$$ | $$$$$$$ |
+$$ |\$  /$$ |$$   ____|$$ |  $$ |$$ |$$  __$$ |
+$$ | \_/ $$ |\$$$$$$$\ \$$$$$$$ |$$ |\$$$$$$$ |
+\__|     \__| \_______| \_______|\__| \_______|
+                                               
+                                               
+                                   
+
+Description: Media Queries Section CSS
+***********************************************/
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+  #welcome-section .welcome-contet-wrapper h1{
+    font-size: 2em;
+  }
+
+  #welcome-section .welcome-contet-wrapper h3{
+    font-size: 1em;
+  }
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+  #welcome-section .welcome-contet-wrapper h1{
+    font-size: 2.5em;
+  }
+
+  #welcome-section .welcome-contet-wrapper h3{
+    font-size: 1.5em;
+  }
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 992px) {
+
+  #welcome-section .welcome-contet-wrapper h1{
+    font-size: 3em;
+  }
+
+  #welcome-section .welcome-contet-wrapper h3{
+    font-size: 1.8em;
+  }
+
 }
