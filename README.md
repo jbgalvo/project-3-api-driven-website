@@ -11,4 +11,4 @@ __Objective:__ Demonstrate proficiency in designing and developing a website tha
 __About TMDB:__ The Movie Database (TMDB) is a community built movie and TV database. Every piece of data has been added by our amazing community dating back to 2008. TMDB's strong international focus and breadth of data is largely unmatched and something we're incredibly proud of. Put simply, we live and breathe community and that's precisely what makes us different.
 
 
-__THIS IS PROJECT IS FOR EDUCATIONAL PURPOSES ONLY CREDITS TO The Movie Database (TMDB)!__
+__THIS IS PROJECT IS FOR ONLY EDUCATIONAL PURPOSES CREDITS TO The Movie Database (TMDB)!__
