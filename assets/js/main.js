@@ -2,15 +2,17 @@
 const apiKey = 'fdd3c16ff0bbdc6a5f71e7aa4ad500da';
 const options = {method: 'GET', headers: {accept: 'application/json'}};
 const movieCard = document.getElementById("popular-movies-content");
+let moviePage = 1;
 
 //Button Variables
 const searchBtnMovie = document.getElementById("search-btn-movie");
 const resetBtnMovie = document.getElementById("reset-btn-movie");
+const loadMoreBtnMovie = document.getElementById("load-more-btn-movie");
 
 //Function for returning movies data
-const fetchGamesMovies = () => {
+const fetchGamesMovies = (page) => {
   
-  return fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`)
+  return fetch(`https://api.themoviedb.org/3/movie/popular?page=${page}&api_key=${apiKey}`)
         .then((response) => response.json())
         .then((response) => {
           response.results.forEach((movie) => {
@@ -18,11 +20,10 @@ const fetchGamesMovies = () => {
           });
         })
         .catch((err) => console.error(err));
-  
 }
 
 //Call fetch Game Movies
-fetchGamesMovies();
+fetchGamesMovies(moviePage);
 
 //Get Search Data Filter for Movies
 searchBtnMovie.addEventListener("click", () => {
@@ -35,6 +36,10 @@ searchBtnMovie.addEventListener("click", () => {
     .then((response) => {
 
       if (response.results.length === 0){
+
+        //Hide Load More button 
+        loadMoreBtnMovie.classList.add('d-none');
+
         movieCard.innerHTML = `
           <div class="d-flex flex-column align-items-center">
              <div class="mb-2">
@@ -63,13 +68,39 @@ searchBtnMovie.addEventListener("click", () => {
 });
 
 
+//Load More Btn Filter
+loadMoreBtnMovie.addEventListener("click", () => {
+
+  //Increment Page value
+  moviePage++;
+
+  //Set Timeout for displaying the movie page
+  setTimeout(() => {
+
+    fetchGamesMovies(moviePage);
+
+  }, "400");
+
+});
+
+
 //Reset Filter
 resetBtnMovie.addEventListener("click", () => {
 
+  //Remove diplsay none
+  loadMoreBtnMovie.classList.remove("d-none");
+
+  //Search input valeu to empty
+  document.getElementById("search-input-movie").value = '';
+
   //Empty First the movie contents
   movieCard.innerHTML = "";
+  
+  //Reset Movie Page to 1
+  moviePage = 1;
 
-  fetchGamesMovies();
+  //Revert back load more page to 1
+  fetchGamesMovies(moviePage);
 
 });
 
