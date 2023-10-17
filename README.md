@@ -2,7 +2,7 @@
 
 This project was created using HTML, CSS, Bootstrap 5, Javascript, AOS plugin and SweetAlert plugin.
 
-## BASE 404 Project 3
+## BASE 404 - Project 3
 
 __Objective:__ Demonstrate proficiency in designing and developing a website that fetches data from external API sources. This project will test your understanding of handling API responses, and integrating data into your website.
 
