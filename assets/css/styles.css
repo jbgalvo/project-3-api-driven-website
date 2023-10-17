@@ -28,7 +28,7 @@ body {
   line-height: 1.75rem;
   background-color: var(--bg-white);
   color: var(--text-black);
-  padding-top: 60px;
+  padding-top: 53px;
   scroll-behavior: smooth;
 }
 
@@ -73,12 +73,38 @@ Description: Header CSS
   background: var(--bg-primary);
 }
 
-#header .nav-link {
-  color: var(--text-white);
+#header .navbar-toggler {
+  border: none;
 }
 
-#header .nav-item .active {
+#header .navbar-toggler:focus {
+  box-shadow: none;
+}
+
+#header .navbar-toggler-icon {
+  color: var(--text-white);
+  width: unset;
+  height: unset;
+}
+
+#header .navbar-nav .nav-item .nav-link {
+  color: var(--text-white);
+  padding: 0.5rem 1rem;
+  text-align: center;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+#header .navbar-nav .nav-item .active {
   font-weight: bold;
+}
+
+#header .navbar {
+  -webkit-tranistion: all .2s linear;
+  -o-transition: all .2s linear;
+  -moz-transition: all .2s linear;
+  -ms-transition: all .2s linear;
+  transition: all .2s linear;
 }
 
 /*****************************************************************
