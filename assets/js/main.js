@@ -1,3 +1,6 @@
+//Initialize AOS
+AOS.init();
+
 //Get API Options
 const apiKey = 'fdd3c16ff0bbdc6a5f71e7aa4ad500da';
 const options = {method: 'GET', headers: {accept: 'application/json'}};
@@ -198,6 +201,7 @@ const createMovieCard = (movie) => {
   
   //Initialize Card Class
   movieCardContent.classList.add("col-lg-3", "col-md-6");
+  movieCardContent.setAttribute("data-aos", "fade-down");
   movieCardContent.innerHTML = `
     <div class="card h-100">
       <img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" 
