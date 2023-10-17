@@ -1,6 +1,6 @@
 ## Project-3-API-Driven-Website
 
-This project was created using HTML, CSS, Bootstrap 5, Javascript and SweetAlert Plugin.
+This project was created using HTML, CSS, Bootstrap 5, Javascript, AOS plugin and SweetAlert plugin.
 
 ## BASE 404 Project 3
 
