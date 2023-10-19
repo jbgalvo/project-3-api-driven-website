@@ -16,7 +16,7 @@ const loadMoreBtnMovie = document.getElementById("load-more-btn-movie");
 const loadMoreBtnMovieIcon = document.getElementById("load-more-btn-movie-icon");
 
 //Function for returning movies data
-const fetchGamesMovies = (page) => {
+const fetchMovies = (page) => {
   
   return fetch(`https://api.themoviedb.org/3/movie/popular?page=${page}&api_key=${apiKey}`)
         .then((response) => response.json())
@@ -28,8 +28,8 @@ const fetchGamesMovies = (page) => {
         .catch((err) => console.error(err));
 }
 
-//Call fetch Game Movies
-fetchGamesMovies(moviePage);
+//Call fetch Movies
+fetchMovies(moviePage);
 
 //Get Search Data Filter for Movies
 searchBtnMovie.addEventListener("click", () => {
@@ -112,7 +112,7 @@ loadMoreBtnMovie.addEventListener("click", () => {
       timer: 1500,
     });
 
-    fetchGamesMovies(moviePage);
+    fetchMovies(moviePage);
     
   }, "800");
 
@@ -142,7 +142,7 @@ resetBtnMovie.addEventListener("click", () => {
     Swal.fire({
       position: "center",
       icon: "success",
-      title: "Successfully Game Reset!",
+      title: "Successfully Filter Reset!",
       showConfirmButton: false,
       timer: 1500,
     });
@@ -160,7 +160,7 @@ resetBtnMovie.addEventListener("click", () => {
     moviePage = 1;
 
     //Revert back load more page to 1
-    fetchGamesMovies(moviePage);
+    fetchMovies(moviePage);
 
   }, "1000");
 
